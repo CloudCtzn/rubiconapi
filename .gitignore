@@ -1,0 +1,6 @@
+*.tfstate
+*.tfstate.backup
+augur/lambda/*.zip
+augur/terraform/response.json
+lambda/*.zip 
+.terraform/
