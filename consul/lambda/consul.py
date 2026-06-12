@@ -55,7 +55,6 @@ def lambda_handler(event, context):
 
         bedrock_body = json.loads(bedrock_response["body"].read())
         raw_text = bedrock_body["content"][0]["text"].strip()
-        print(f"Raw AI response: {raw_text}")
         raw_text = raw_text.replace("```json", "").replace("```", "").strip()
         ai_output = json.loads(raw_text)
 
