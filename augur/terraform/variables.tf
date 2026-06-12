@@ -10,3 +10,8 @@ variable "environment" {
     default = "prod"
 }
 
+variable "rapidapi_secret" {
+    description = "RapidAPI proxy secret for request validation"
+    type = string
+    sensitive = true
+}

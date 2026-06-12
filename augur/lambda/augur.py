@@ -3,6 +3,9 @@ import boto3
 import uuid
 from datetime import datetime, timezone 
 from decimal import Decimal
+import os 
+
+RAPIDAPI_SECRET = os.environ.get("RAPIDAPI_SECRET")
 
 #Section 1 - AWS Clients 
 comprehend = boto3.client("comprehend")
@@ -31,6 +34,12 @@ def response(status_code, body):
 #Section 2 - The Handler 
 def lambda_handler(event, context):
     try:
+        headers = event.get("headers", {})
+        proxy_secret = headers.get("x-rapidapi-proxy-secret")
+
+        if not proxy_secret or proxy_secret != RAPIDAPI_SECRET:
+            return response(403, {"error": "Forbidden"})
+        
         body = json.loads(event.get("body", "{}"))
         text = body.get("text", "").strip()
 

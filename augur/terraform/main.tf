@@ -98,6 +98,7 @@ resource "aws_lambda_function" "augur" {
     environment {
         variables = {
             ENVIRONMENT = var.environment
+            RAPIDAPI_SECRET = var.rapidapi_secret
         }
     }
 
@@ -106,6 +107,8 @@ resource "aws_lambda_function" "augur" {
         API = "Augur"
     }
 }
+
+
 
 # API Gateway 
 resource "aws_apigatewayv2_api" "rubicon" {

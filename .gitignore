@@ -4,3 +4,12 @@ augur/lambda/*.zip
 augur/terraform/response.json
 lambda/*.zip 
 .terraform/
+consul/lambda/*.zip
+consul/terraform/response.json
+consul/terraform/.terraform/
+consul/terraform/*.tfstate
+consul/terraform/*.tfstate.backup
+*.tfvars
+specula/lambda/*.zip
+specula/terraform/response.json
+specula/terraform/.terraform/

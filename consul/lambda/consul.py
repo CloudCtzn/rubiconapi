@@ -2,6 +2,9 @@ import json
 import boto3
 import uuid
 from datetime import datetime, timezone
+import os 
+
+RAPIDAPI_SECRET = os.environ.get("RAPIDAPI_SECRET")
 
 bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
 dynamodb = boto3.resource("dynamodb")
@@ -31,6 +34,12 @@ def response(status_code, body):
 
 def lambda_handler(event, context):
     try:
+        headers = event.get("headers", {})
+        proxy_secret = headers.get("x-rapidapi-proxy-secret")
+
+        if not proxy_secret or proxy_secret != RAPIDAPI_SECRET:
+            return response(403, {"error": "Forbidden"})
+        
         body = json.loads(event.get("body", "{}"))
         text = body.get("text", "").strip()
 
