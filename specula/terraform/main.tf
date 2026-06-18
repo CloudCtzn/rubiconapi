@@ -96,7 +96,7 @@ resource "aws_lambda_function" "specula" {
     environment {
       variables = {
         ENVIRONMENT = var.environment
-        RAPIDAPI_SECRET = var.rapidapi_secret
+        
       }
     }
 

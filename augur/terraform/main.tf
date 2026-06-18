@@ -95,12 +95,11 @@ resource "aws_lambda_function" "augur" {
     timeout = 30
     memory_size = 128
 
-    environment {
-        variables = {
-            ENVIRONMENT = var.environment
-            RAPIDAPI_SECRET = var.rapidapi_secret
-        }
-    }
+   environment {
+     variables = {
+        ENVIRONMENT = var.environment
+     }
+   }
 
     tags = {
         Project = "RubiconAPI"
